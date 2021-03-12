@@ -1,6 +1,7 @@
-### 一期
+### 一期 5%
 
 1. 记录到localStorage的taskList
+   1. 组件修改taskList ,保存到localStorage,然后唤起tasklist.vue 的刷新。
 2. 指令操作
    1. 新建任务
       1. 时间 自动填充
