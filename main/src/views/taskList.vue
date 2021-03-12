@@ -63,12 +63,12 @@
                             })
                             break;
                         default:
-                            if (!this.$refs[codeL[0]]) throw new Error('没找到【' + codeL[0] + '】这条指令呢~  ');
+                            if (!this.$refs[codeL[0]]) throw new Error('没找到【' + codeL[0] + '】这条指令呢~');
                             this.$refs[codeL[0]].quick(codeL)
                             break;
                     }
                 } catch (e) {
-                    return this.$msg('TuTu:' + e)
+                    return this.$msg('TuTu：' + e.message)
                 }
             },
 

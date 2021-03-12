@@ -1,12 +1,15 @@
 <template>
-    <div :style="isOpen?'':'transform:translateX(30vw);opactiy:0'" class="commandTool" @click="change(true)">
+    <div :style="isOpen?'':'transform:translateX(410px);opactiy:0'" class="commandTool" @click="change(true)">
         <div class="codeHistory" :style="history.length?'border: 4px rgba(0, 0, 0, 0.05) solid;':''">
             <div v-for="(item,index) in history" v-bind:key="index+':'+item" @dblclick="code=item">
                 {{`${index} $: ${item}`}}
             </div>
         </div>
         <el-input ref='code' v-model="code" @change="sureSelect" @keyup.native.stop="check" placeholder="请输入指令"
-            class="codeInput">
+            class="codeInput" :style="isOpen?'':'margin-left:-50px'">
+             <template slot="prepend" v-if="!isOpen">
+                 <i class="el-icon-caret-left"></i>
+             </template>
         </el-input>
     </div>
 </template>
@@ -83,9 +86,7 @@
 </script>
 <style scoped>
     .commandTool {
-        width: 20vh;
-        min-width: 400px;
-        max-width: 600px;
+        width: 400px;
         position: fixed;
         bottom: 0px;
         right: 0px;
@@ -128,7 +129,7 @@
     .codeHistory>div {
         padding-left: 0.6em;
         text-align: left;
-        white-space: nowrap;
+        /* white-space: nowrap; */
         text-overflow: ellipsis;
         font-size: 0.6em;
         margin: 2px 5px;
