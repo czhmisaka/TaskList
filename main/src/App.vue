@@ -1,0 +1,67 @@
+<template>
+  <div id="app">
+    <el-container class="wholeScreen">
+      <!-- <el-aside>
+        <Menu type='left'/>
+      </el-aside> -->
+      <el-container>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
+</template>
+
+<script>
+  import menu from '@/components/menu/menu.vue'
+  export default {
+    components: {
+      Menu: menu
+    },
+    data() {
+      return {
+
+      }
+    },
+    mounted() {},
+  }
+</script>
+
+<style>
+  *{
+    margin: 0px;
+    padding: 0px; 
+  }
+</style>
+<style lang="scss">
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin: 0px;
+    padding: 0px;
+  }
+
+
+  .wholeScreen {
+    width: 100%;
+    overflow-y: auto;
+    height: 100vh;
+  }
+
+  #nav {
+    padding: 30px;
+
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+
+      &.router-link-exact-active {
+        color: #42b983;
+      }
+    }
+  }
+</style>
