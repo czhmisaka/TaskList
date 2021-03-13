@@ -30,10 +30,17 @@ const buttonActionlist = [
     buttonActionMaker('导出', 'EXPORT')
 ]
 
+const commandList = {
+    OPEN: {
+        value: [' -打开指令- '].concat(Object.keys(actionToIcon).map(x => { return '    ' + x }))
+    },
+}
+
 
 
 
 
 export {
-    buttonActionlist
+    buttonActionlist,
+    commandList
 }

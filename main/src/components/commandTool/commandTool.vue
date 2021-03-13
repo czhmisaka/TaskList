@@ -1,21 +1,24 @@
 <template>
     <div :style="isOpen?'':'transform:translateX(410px);opactiy:0'" class="commandTool" @click="change(true)">
-        <div class="codeHistory" :style="history.length?'border: 4px rgba(0, 0, 0, 0.05) solid;':''">
-            <div v-for="(item,index) in history" v-bind:key="index+':'+item" @dblclick="code=item">
-                {{`${index} $: ${item}`}}
+        <div class="codeHistoryBox">
+            <div class="codeHistory" :style="history.length?'border: 4px rgba(0, 0, 0, 0.05) solid;':''">
+                <div v-for="(item,index) in history" v-bind:key="index+':'+item" @dblclick="code=item">
+                    {{`${index} $: ${item}`}}
+                </div>
             </div>
         </div>
         <el-input ref='code' v-model="code" @change="sureSelect" @keyup.native.stop="check" placeholder="请输入指令"
             class="codeInput" :style="isOpen?'':'margin-left:-50px'">
-             <template slot="prepend" v-if="!isOpen">
-                 <i class="el-icon-caret-left"></i>
-             </template>
+            <template slot="prepend" v-if="!isOpen">
+                <i class="el-icon-caret-left"></i>
+            </template>
         </el-input>
     </div>
 </template>
 <script>
     import {
-        buttonActionlist
+        buttonActionlist,
+        commandList
     } from '@/config/taskAction.js'
     let EnterNum = 0
     export default {
@@ -37,11 +40,14 @@
         methods: {
             // 打开
             async change(e) {
-                this.isOpen = e
                 if (e) {
+                    this.isOpen = e
                     await this.$nextTick()
                     this.$refs.code.focus()
                     this.code = '';
+                } else {
+                    this.$refs.code.blur()
+                    this.isOpen = e
                 }
             },
 
@@ -54,7 +60,7 @@
             check(e) {
                 switch (e.code) {
                     case 'Escape':
-                        this.$refs.code.blur()
+                        this.change(false)
                         break;
                     case 'Enter':
                         EnterNum++
@@ -75,11 +81,18 @@
                         this.history = []
                         this.code = ''
                         break;
+                    case 'HELP':
+                        for (let x in commandList) {
+                            commandList[x].value.forEach(item => {
+                                this.history.push(x + item)
+                            })
+                        }
+                        break;
                     default:
-                        this.history.push(code)
-                        this.$emit('dealCode', code)
-                        this.code = ''
+                        this.history.push(this.code)
+                        this.$emit('dealCode', this.code)
                 }
+                this.code = ''
             },
         },
     }
@@ -95,6 +108,10 @@
         transition: all 0.4s;
     }
 
+    .codeHistoryBox {
+        padding-bottom: 50px;
+    }
+
     .codeHistory {
         max-height: 30vh;
         width: calc(100% - 40px);
@@ -105,7 +122,6 @@
         overflow-x: hidden;
         background: rgba(0, 0, 0, 0.2);
         box-sizing: border-box;
-        padding-bottom: 50px;
         transform: translateY(50px);
     }
 

@@ -6,9 +6,9 @@
                 {{item.name}}
             </el-button>
         </el-card>
-        <el-card v-for="(item) in taskList" v-bind:key="item.id">
-            <!-- <taskCard :detail='item' /> -->
-            {{item}}
+        <el-card v-for="(item,index) in taskList" v-bind:key="item.id">
+            <taskCard :detail='item' />
+            {{item}}{{index}}
         </el-card>
         <commandTool ref='commandTool' @dealCode="dealCode" />
         <ADD ref="ADD" @addList="pushDataToTaskList" />
@@ -19,7 +19,7 @@
     import commandTool from '@/components/commandTool/commandTool.vue'
     import ADD from '@/components/buttonAction/ADD.vue'
     import {
-        buttonActionlist
+        buttonActionlist,
     } from '@/config/taskAction.js'
     export default {
         name: 'taskList',
@@ -56,15 +56,17 @@
                 console.log(code)
                 let codeL = code.split(' ')
                 try {
-                    switch (codeL[0]) {
+                    let codeL0 = codeL[0].toUpperCase()
+                    switch (codeL0) {
                         case 'OPEN':
                             if (codeL[1]) this.buttonAction({
                                 action: codeL[1]
                             })
                             break;
                         default:
-                            if (!this.$refs[codeL[0]]) throw new Error('没找到【' + codeL[0] + '】这条指令呢~');
-                            this.$refs[codeL[0]].quick(codeL)
+                            if(!codeL[1]) throw new Error('唔。。。（摸不着头脑）')
+                            if (!this.$refs[codeL[1].toUpperCase()]) throw new Error('没找到【' + codeL[1] + '】这条指令呢~');
+                            this.$refs[codeL0].quick(codeL)
                             break;
                     }
                 } catch (e) {
