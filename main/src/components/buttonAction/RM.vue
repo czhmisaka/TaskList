@@ -27,7 +27,7 @@
         },
         props: {
             taskList: {
-                type: Object,
+                type: Array,
                 default: []
             }
         },

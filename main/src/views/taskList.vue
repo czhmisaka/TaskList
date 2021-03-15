@@ -11,12 +11,14 @@
         </el-card>
         <commandTool ref='commandTool' @dealCode="dealCode" />
         <ADD ref="ADD" @addList="pushDataToTaskList" />
+        <RM ref="RM" :taskList="taskList" @setTaskList='setTaskList' />
     </div>
 </template>
 <script>
     import taskCard from '@/components/task/taskCard.vue'
     import commandTool from '@/components/commandTool/commandTool.vue'
     import ADD from '@/components/buttonAction/ADD.vue'
+    import RM from '@/components/buttonAction/RM.vue'
     import {
         buttonActionlist,
     } from '@/config/taskAction.js'
@@ -26,6 +28,7 @@
             taskCard,
             commandTool,
             ADD,
+            RM,
         },
         data() {
             return {
@@ -64,6 +67,7 @@
                             break;
                         default:
                             if (!codeL[1]) throw new Error('唔。。。（摸不着头脑）')
+                            console.log('asd', this.$refs)
                             if (!this.$refs[codeL0]) throw new Error('没找到【' + codeL[0] + '】这条指令呢~');
                             this.$refs[codeL0].quick(codeL)
                             break;
@@ -72,7 +76,10 @@
                     return this.$msg('TuTu：' + e.message)
                 }
             },
-
+            // 设置任务列表 -- 通用化tasklist操作
+            setTaskList(taskList) {
+                this.taskList = JSON.parse(JSON.stringify(taskList))
+            },
 
             // 添加任务 -- ADD 组件触发
             pushDataToTaskList(data) {
@@ -82,7 +89,7 @@
 
             // 按钮行为合集
             buttonAction(action) {
-                console.log(action,'asd')
+                console.log(action, 'asd')
                 this.$refs['commandTool'].change(false)
                 if (action.needDoubleCheck) this.$confirm(`将执行${action.name}`, {
                     type: 'warning'
@@ -90,23 +97,26 @@
                 else {
                     switch (action.action) {
                         case 'ADD':
-                            this.$refs[action.action].open()
                             break;
                         default:
-                            this.$msg(`还没开发这个功能【${action.action}】`,'info')
+                            if (this.$refs[action.action]) {
+                                this.$refs[action.action].open()
+                            } else {
+                                this.$msg(`还没开发这个功能【${action.action}】`, 'info')
+                            }
                             break;
                     }
                 }
             },
 
             // 从本地存储获取任务列表
-            async getTaskListFromLocalStorage(){
-                this.taskList = JSON.parse( await localStorage.getItem('taskList'))||[]
+            async getTaskListFromLocalStorage() {
+                this.taskList = JSON.parse(await localStorage.getItem('taskList')) || []
             },
 
             // 保存任务列表到本地存储JSON.parse()
-            async saveTaskListToLocalStorage(){
-                await localStorage.setItem('taskList',JSON.stringify(this.taskList))
+            async saveTaskListToLocalStorage() {
+                await localStorage.setItem('taskList', JSON.stringify(this.taskList))
             },
         },
     }
