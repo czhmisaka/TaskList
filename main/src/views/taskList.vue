@@ -37,7 +37,6 @@
             let that = this
             document.onkeydown = function (e) {
                 if (e.path.length > 6) return;
-                console.log(e.code)
                 switch (e.code) {
                     case 'Escape':
                         that.$refs['commandTool'].change(false)
@@ -52,7 +51,6 @@
         methods: {
             // 处理指令
             dealCode(code) {
-                console.log(code)
                 let codeL = code.split(' ')
                 try {
                     let codeL0 = codeL[0].toUpperCase()
@@ -64,7 +62,7 @@
                             break;
                         default:
                             if (!codeL[1]) throw new Error('唔。。。（摸不着头脑）')
-                            if (!this.$refs[codeL1]) throw new Error('没找到【' + codeL[0] + '】这条指令呢~');
+                            if (!this.$refs[codeL0]) throw new Error('没找到【' + codeL[0] + '】这条指令呢~');
                             this.$refs[codeL0].quick(codeL)
                             break;
                     }
@@ -76,12 +74,12 @@
 
             // 添加任务 -- ADD 组件触发
             pushDataToTaskList(data) {
-                console.log(1)
                 this.taskList.push(JSON.parse(JSON.stringify(data)))
             },
 
             // 按钮行为合集
             buttonAction(action) {
+                console.log(action,'asd')
                 this.$refs['commandTool'].change(false)
                 if (action.needDoubleCheck) this.$confirm(`将执行${action.name}`, {
                     type: 'warning'
@@ -90,6 +88,9 @@
                     switch (action.action) {
                         case 'ADD':
                             this.$refs[action.action].open()
+                            break;
+                        default:
+                            this.$msg(`还没开发这个功能【${action.action}】`,'info')
                             break;
                     }
                 }
