@@ -5,9 +5,9 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-Vue.prototype.$msg = function(message, type = 'error') {
+Vue.prototype.$msg = function (message, type = 'error') {
     Vue.prototype.$message({
-        message,
+        message: 'TuTu: ' + message,
         type
     })
 }

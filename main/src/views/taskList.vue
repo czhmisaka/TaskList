@@ -7,8 +7,7 @@
             </el-button>
         </el-card>
         <el-card v-for="(item,index) in taskList" v-bind:key="item.id">
-            <taskCard :detail='item' />
-            {{item}}{{index}}
+            <taskCard :detail='{...item,index}' />
         </el-card>
         <commandTool ref='commandTool' @dealCode="dealCode" />
         <ADD ref="ADD" @addList="pushDataToTaskList" />
@@ -60,12 +59,12 @@
                     switch (codeL0) {
                         case 'OPEN':
                             if (codeL[1]) this.buttonAction({
-                                action: codeL[1]
+                                action: codeL[1].toUpperCase()
                             })
                             break;
                         default:
-                            if(!codeL[1]) throw new Error('唔。。。（摸不着头脑）')
-                            if (!this.$refs[codeL[1].toUpperCase()]) throw new Error('没找到【' + codeL[1] + '】这条指令呢~');
+                            if (!codeL[1]) throw new Error('唔。。。（摸不着头脑）')
+                            if (!this.$refs[codeL1]) throw new Error('没找到【' + codeL[0] + '】这条指令呢~');
                             this.$refs[codeL0].quick(codeL)
                             break;
                     }

@@ -1,6 +1,7 @@
 <template>
-    <div>
-    </div>
+    <el-card>
+        {{detail.index+detail.context}}
+    </el-card>
 </template>
 <script>
     export default {
@@ -8,9 +9,15 @@
         components: {
 
         },
+        props: {
+            detail: {
+                type: Object,
+                default: {}
+            }
+        },
         data() {
             return {
-                taskList:[]
+                taskList: []
             }
         },
         mounted() {
