@@ -1,7 +1,10 @@
 <template>
-    <el-card>
-        {{detail.index+detail.context}}
-    </el-card>
+    <div class="wordStyle">
+        <el-tag>
+            {{detail.index}}
+        </el-tag>
+        {{detail.context}}
+    </div>
 </template>
 <script>
     export default {
@@ -28,3 +31,9 @@
         },
     }
 </script>
+
+<style scoped>
+.wordStyle{
+    text-align: left;
+}
+</style>

@@ -41,17 +41,19 @@
                     case 'Escape':
                         that.$refs['commandTool'].change(false)
                         break;
-                    case 'Enter':
+                    case 'Space':
                         that.$refs['commandTool'].change(true)
                         break;
                 }
             }
         },
-        mounted() {},
+        async mounted() {
+            await this.getTaskListFromLocalStorage()
+        },
         methods: {
             // 处理指令
             dealCode(code) {
-                let codeL = code.split(' ')
+                let codeL = code.replace(/(^\s*)|(\s*$)/g, "").split(' ')
                 try {
                     let codeL0 = codeL[0].toUpperCase()
                     switch (codeL0) {
@@ -75,6 +77,7 @@
             // 添加任务 -- ADD 组件触发
             pushDataToTaskList(data) {
                 this.taskList.push(JSON.parse(JSON.stringify(data)))
+                this.saveTaskListToLocalStorage()
             },
 
             // 按钮行为合集
@@ -94,7 +97,17 @@
                             break;
                     }
                 }
-            }
+            },
+
+            // 从本地存储获取任务列表
+            async getTaskListFromLocalStorage(){
+                this.taskList = JSON.parse( await localStorage.getItem('taskList'))||[]
+            },
+
+            // 保存任务列表到本地存储JSON.parse()
+            async saveTaskListToLocalStorage(){
+                await localStorage.setItem('taskList',JSON.stringify(this.taskList))
+            },
         },
     }
 </script>
