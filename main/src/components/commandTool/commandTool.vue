@@ -75,15 +75,26 @@
             applyTheCode() {
                 EnterNum = 0
                 let code = this.code.toUpperCase()
-                switch (code) {
+                let codeL = code.split(' ')
+                switch (codeL[0]) {
                     case 'CLS':
                     case 'CLEAR':
                         this.history = []
                         this.code = ''
                         break;
                     case 'HELP':
-                        for (let x in commandList) {
-                            commandList[x].value.forEach(item => {
+                        let list = commandList
+                        if (codeL[1]) {
+                            let upCode1 = codeL[1]
+                            if (commandList[upCode1]) {
+                                list[upCode1] = commandList[upCode1]
+                            } else {
+                                this.code = ''
+                                return this.$msg('没找到【' + upCode1 + '】组件', 'info')
+                            }
+                        }
+                        for (let x in list) {
+                            list[x].value.forEach(item => {
                                 this.history.push(x + item)
                             })
                         }
