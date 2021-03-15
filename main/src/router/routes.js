@@ -4,11 +4,11 @@ const cellStorage = {
     taskList
 }
 
-function cellMaker(name, meta = {}, path = "/") {
+function cellMaker(name, meta = {}, path = "/", component = "") {
     return {
         path: path + name,
         name: name,
-        component: cellStorage[name],
+        component: cellStorage[component||name],
         meta
     }
 }
@@ -16,6 +16,7 @@ function cellMaker(name, meta = {}, path = "/") {
 
 
 let routes = [
+    cellMaker('',{},'/','taskList'),
     cellMaker('taskList'),
 ]
 
