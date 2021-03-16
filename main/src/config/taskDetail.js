@@ -27,37 +27,43 @@ let taskStatusTemplateMap = {
         name: '初始化',
         status: 'init',
         gmtModified: 0,
-        code: -1
+        code: -1,
+        type: 'info'
     },
     'workIn': {
         name: '进行中',
         status: 'workIn',
         gmtModified: 0,
         code: 10,
+        type: 'primary'
     },
     'suspend': {
         name: '挂起',
         status: 'suspend',
         gmtModified: 0,
-        code: 20
+        code: 20,
+        type: 'info'
     },
     'wa': {
         name: '等待接口',
         status: 'wait Api',
         gmtModified: 0,
-        code: 30
+        code: 30,
+        type: 'warning'
     },
     'wt': {
         name: '等待测试',
         status: 'wait test',
         gmtModified: 0,
-        code: 31
+        code: 31,
+        type: 'warning'
     },
     'finish': {
         name: '完成',
         status: 'finish',
         gmtModified: 0,
-        code: 100
+        code: 100,
+        type: 'success'
     }
 }
 for (let x in taskStatusTemplateMap) {

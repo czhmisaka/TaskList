@@ -49,7 +49,7 @@ const commandList = {
     },
     RM: {
         value: [' -删除任务- ', ' number ']
-    }
+    },
 }
 
 export {
