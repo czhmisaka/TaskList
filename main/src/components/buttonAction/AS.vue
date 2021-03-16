@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-dialog title="删除任务" :visible.sync="isOpen">
+        <el-dialog title="修改任务状态" :visible.sync="isOpen">
             <el-form @submit.native.prevent @keyup.native.enter.stop="confirm" label-position="top">
                 <el-form-item :label="`相关任务${taskList.length}个`">
                 </el-form-item>
@@ -14,8 +14,11 @@
     </div>
 </template>
 <script>
+    import {
+        taskStatusTemplateMap
+    } from '@/config/taskDetail.js'
     export default {
-        name: 'RM',
+        name: 'AS',
         components: {},
         data() {
             return {
@@ -35,10 +38,13 @@
             // 快捷调用 
             quick(list) {
                 try {
-                    if (this.taskList[list[1]]) {
-                        this.taskList.splice(list[1], 1)
-                        this.confirm()
-                    }
+                    if (!this.taskList[list[1]].history)
+                        this.taskList[list[1]]["history"] = []
+                    let status = taskStatusTemplateMap[list[2]]
+                    if (!status) throw new Error('没找到对应状态！【' + list[2] + '】')
+                    status.gmtModified = new Date
+                    this.taskList[list[1]].history.push(status)
+                    this.confirm()
                 } catch (e) {
                     return this.$msg('TuTu：' + e.message)
                 }
@@ -59,6 +65,10 @@
 
             // 行为确认
             confirm() {
+                if (!this.taskList.length) {
+                    this.$msg('未选择任务', 'info')
+                    return this.close()
+                }
                 this.$emit('setTaskList', this.taskList)
                 if (this.isOpen) this.close()
             },

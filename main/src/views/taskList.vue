@@ -12,6 +12,7 @@
         <commandTool ref='commandTool' @dealCode="dealCode" />
         <ADD ref="ADD" @addList="pushDataToTaskList" />
         <RM ref="RM" :taskList="taskList" @setTaskList='setTaskList' />
+        <AS ref="AS" :taskList="taskList" @setTaskList='setTaskList' />
     </div>
 </template>
 <script>
@@ -19,6 +20,7 @@
     import commandTool from '@/components/commandTool/commandTool.vue'
     import ADD from '@/components/buttonAction/ADD.vue'
     import RM from '@/components/buttonAction/RM.vue'
+    import AS from '@/components/buttonAction/AS.vue'
     import {
         buttonActionlist,
     } from '@/config/taskAction.js'
@@ -29,6 +31,7 @@
             commandTool,
             ADD,
             RM,
+            AS
         },
         data() {
             return {
@@ -79,6 +82,7 @@
             // 设置任务列表 -- 通用化tasklist操作
             setTaskList(taskList) {
                 this.taskList = JSON.parse(JSON.stringify(taskList))
+                this.saveTaskListToLocalStorage()
             },
 
             // 添加任务 -- ADD 组件触发
@@ -96,8 +100,6 @@
                 }).then(function () {})
                 else {
                     switch (action.action) {
-                        case 'ADD':
-                            break;
                         default:
                             if (this.$refs[action.action]) {
                                 this.$refs[action.action].open()

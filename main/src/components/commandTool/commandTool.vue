@@ -74,8 +74,9 @@
             // 应用指令
             applyTheCode() {
                 EnterNum = 0
-                let code = this.code.toUpperCase()
+                let code = this.code.replace(/(^\s*)|(\s*$)/g, "").toUpperCase()
                 let codeL = code.split(' ')
+                console.log(codeL)
                 switch (codeL[0]) {
                     case 'CLS':
                     case 'CLEAR':
@@ -84,7 +85,8 @@
                         break;
                     case 'HELP':
                         let list = commandList
-                        if (codeL[1]) {
+                        console.log('asd',commandList[codeL[1]],codeL)
+                        if (commandList[codeL[1]]) {
                             let upCode1 = codeL[1]
                             if (commandList[upCode1]) {
                                 list[upCode1] = commandList[upCode1]
@@ -95,12 +97,12 @@
                         }
                         for (let x in list) {
                             list[x].value.forEach(item => {
-                                this.history.push(x + item)
+                                this.history.unshift(x + item)
                             })
                         }
                         break;
                     default:
-                        this.history.push(this.code)
+                        this.history.unshift(this.code)
                         this.$emit('dealCode', this.code)
                 }
                 this.code = ''

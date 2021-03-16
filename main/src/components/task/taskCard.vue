@@ -4,6 +4,9 @@
             {{detail.index}}
         </el-tag>
         {{detail.context}}
+        <span v-for="(item) in detail.history" :key="item.time">
+            {{" -"+item.name}}
+        </span>
     </div>
 </template>
 <script>
@@ -33,7 +36,7 @@
 </script>
 
 <style scoped>
-.wordStyle{
-    text-align: left;
-}
+    .wordStyle {
+        text-align: left;
+    }
 </style>

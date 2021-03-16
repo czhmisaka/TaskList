@@ -30,15 +30,27 @@ const buttonActionlist = [
     buttonActionMaker('导出', 'EXPORT')
 ]
 
+
+import {
+    taskStatusTemplateMap
+} from '@/config/taskDetail.js'
+console.log(taskStatusTemplateMap)
+
 const commandList = {
     OPEN: {
-        value: [' -打开指令- '].concat(Object.keys(actionToIcon).map(x => { return '    ' + x }))
+        value: [' -打开指令- '].concat(Object.keys(actionToIcon).map(x => {
+            return '    ' + x
+        }))
     },
+    AS: {
+        value: [' -改变状态- '].concat(Object.keys(taskStatusTemplateMap).map(x => {
+            return ' number ' + x
+        }))
+    },
+    RM: {
+        value: [' -删除任务- ', ' number ']
+    }
 }
-
-
-
-
 
 export {
     buttonActionlist,
