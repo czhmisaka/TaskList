@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-card>
+        <el-card style='margin-bottom:10px'>
             <el-button v-for="(item) in buttonActionlist" v-bind:key="item.action" :type="item.type"
                 @click="buttonAction(item)">
                 {{item.name}}
@@ -43,6 +43,7 @@
             let that = this
             document.onkeydown = function (e) {
                 if (e.path.length > 6) return;
+                console.log(e.code)
                 switch (e.code) {
                     case 'Escape':
                         that.$refs['commandTool'].change(false)
@@ -123,3 +124,9 @@
         },
     }
 </script>
+<style scoped>
+.demo{
+    display: flex;
+    justify-content: space-around;
+}
+</style>

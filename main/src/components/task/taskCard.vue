@@ -4,17 +4,13 @@
             {{detail.index}}
         </el-tag>
         {{detail.context}}
-        <span :key="item" v-for="(item) in detail.history">
+        <span :key="item.name+index+detail.index" v-for="(item,index) in detail.history">
             {{' - '+item.name}}
         </span>
         <!-- <el-tag size="mini" :type="detail.status.type||'primary'">{{detail.status.name}}</el-tag> -->
     </div>
 </template>
 <script>
-    import {
-        taskStatusTemplateMap
-    } from '@/config/taskDetail.js'
-    console.log(taskStatusTemplateMap)
     export default {
         name: 'taskCard',
         components: {
@@ -32,10 +28,6 @@
             }
         },
         mounted() {
-            // if (!this.detail.status) {
-            //     this.detail.status = {}
-            // }
-            // this.detail.status = taskStatusTemplateMap[this.detail.history[this.detail.history.length - 1].name] || {}
         },
         methods: {
 

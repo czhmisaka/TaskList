@@ -29,7 +29,6 @@
             }
         },
         mounted() {
-            console.log(taskStatusTemplateMap)
         },
         methods: {
             // 快捷调用 
