@@ -1,14 +1,27 @@
 <template>
-    <div class="wordStyle">
-        <el-tag>
+    <div class="wordStyle" @mouseleave="changePopover(false)" @keydown="changePopover">
+        <el-tag size="mini" style="margin-right:10px">
             {{detail.index}}
         </el-tag>
-        {{detail.context}}
-        <span :key="item.name+index+detail.index" v-for="(item,index) in detail.history">
-            {{' - '+item.name}}
+        <span v-if="status">
+            <el-popover placement="top" trigger="manual" v-model="visible">
+                <el-tag :type="status.type?status.type:'primary'" slot="reference" @click="changePopover(true)"
+                    class="pointerMouse">
+                    {{status.name}}
+                </el-tag>
+                <span :key="item.name+index+detail.index" v-for="(item,index) in detail.history">
+                    <el-tag :type="item.type" style="margin:5px 10px">
+                        {{item.name}}
+                    </el-tag>
+                    <span v-if="index!=detail.history.length-1">
+                        >
+                    </span>
+                </span>
+            </el-popover>
         </span>
-        <!-- <el-tag size="mini" :type="detail.status.type||'primary'">{{detail.status.name}}</el-tag> -->
+        {{detail.context}}
     </div>
+
 </template>
 <script>
     export default {
@@ -19,18 +32,39 @@
         props: {
             detail: {
                 type: Object,
-                default: {}
+                default: {},
             }
         },
         data() {
             return {
-                taskList: []
+                visible: false,
+                status: this.detail.history?this.detail.history[this.detail.history.length - 1]:null
             }
         },
-        mounted() {
-        },
+        watch: {},
+        mounted() {},
         methods: {
+            // 更新当前页面数据
+            refresh() {
+                this.status = this.detail.history[this.detail.history.length - 1]
+                this.$forceUpdate()
+            },
 
+            // 显示/关闭气泡
+            changePopover(e) {
+                if (typeof e === 'object') {
+                    switch (e.key) {
+                        case 'Enter':
+                            this.visible = true;
+                            break;
+                        default:
+                            this.visible = false;
+                            break;
+                    }
+                } else {
+                    this.visible = e
+                }
+            }
         },
     }
 </script>
@@ -38,5 +72,9 @@
 <style scoped>
     .wordStyle {
         text-align: left;
+    }
+
+    .pointerMouse {
+        cursor: pointer;
     }
 </style>

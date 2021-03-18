@@ -7,12 +7,14 @@
             </el-button>
         </el-card>
         <el-card v-for="(item,index) in taskList" v-bind:key="item.id">
-            <taskCard :detail='{...item,index}' />
+            <taskCard :ref="'task'+index" :detail='{...item,index}' />
         </el-card>
+
         <commandTool ref='commandTool' @dealCode="dealCode" />
         <ADD ref="ADD" @addList="pushDataToTaskList" />
         <RM ref="RM" :taskList="taskList" @setTaskList='setTaskList' />
-        <AS ref="AS" :taskList="taskList" @setTaskList='setTaskList' />
+        <AS ref="AS" :taskList="taskList" @setTaskList='setTaskList' @reFreshTaskByIds="reFreshTaskByIds" />
+        <EXPORT ref="as" :taskList="taskList" />
     </div>
 </template>
 <script>
@@ -21,6 +23,7 @@
     import ADD from '@/components/buttonAction/ADD.vue'
     import RM from '@/components/buttonAction/RM.vue'
     import AS from '@/components/buttonAction/AS.vue'
+    import EXPORT from '@/components/buttonAction/EXPORT.vue'
     import {
         buttonActionlist,
     } from '@/config/taskAction.js'
@@ -31,7 +34,8 @@
             commandTool,
             ADD,
             RM,
-            AS
+            AS,
+            EXPORT
         },
         data() {
             return {
@@ -40,10 +44,10 @@
             }
         },
         created() {
+
             let that = this
             document.onkeydown = function (e) {
                 if (e.path.length > 6) return;
-                console.log(e.code)
                 switch (e.code) {
                     case 'Escape':
                         that.$refs['commandTool'].change(false)
@@ -71,7 +75,6 @@
                             break;
                         default:
                             if (!codeL[1]) throw new Error('唔。。。（摸不着头脑）')
-                            console.log('asd', this.$refs)
                             if (!this.$refs[codeL0]) throw new Error('没找到【' + codeL[0] + '】这条指令呢~');
                             this.$refs[codeL0].quick(codeL)
                             break;
@@ -92,9 +95,15 @@
                 this.saveTaskListToLocalStorage()
             },
 
+            // 刷新组件
+            reFreshTaskByIds(ids) {
+                ids.forEach(x => {
+                    this.$refs['task' + x][0].refresh()
+                })
+            },
+
             // 按钮行为合集
             buttonAction(action) {
-                console.log(action, 'asd')
                 this.$refs['commandTool'].change(false)
                 if (action.needDoubleCheck) this.$confirm(`将执行${action.name}`, {
                     type: 'warning'
@@ -125,8 +134,8 @@
     }
 </script>
 <style scoped>
-.demo{
-    display: flex;
-    justify-content: space-around;
-}
+    .demo {
+        display: flex;
+        justify-content: space-around;
+    }
 </style>

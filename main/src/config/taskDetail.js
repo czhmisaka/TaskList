@@ -51,6 +51,13 @@ let taskStatusTemplateMap = {
         code: 30,
         type: 'warning'
     },
+    'wA': {
+        name: '等待后端开发',
+        status: 'wait Api',
+        gmtModified: 0,
+        code: 30,
+        type: 'warning'
+    },
     'wt': {
         name: '等待测试',
         status: 'wait test',
@@ -64,8 +71,23 @@ let taskStatusTemplateMap = {
         gmtModified: 0,
         code: 100,
         type: 'success'
-    }
+    },
+    'fail':{
+        name: '开发失败',
+        status: 'error',
+        gmtModified: 0,
+        code: 41,
+        type: 'danger'
+    },
+    'error': {
+        name: '遇到困难',
+        status: 'error',
+        gmtModified: 0,
+        code: 40,
+        type: 'danger'
+    },
 }
+
 for (let x in taskStatusTemplateMap) {
     taskStatusTemplateMap[x]['backup'] = ''
     taskStatusTemplateMap[x]['other'] = {}

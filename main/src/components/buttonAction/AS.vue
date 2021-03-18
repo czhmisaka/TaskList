@@ -23,6 +23,7 @@
         data() {
             return {
                 isOpen: false,
+                ids:[]
             }
         },
         props: {
@@ -43,6 +44,7 @@
                     let status = taskStatusTemplateMap[list[2]]
                     if (!status) throw new Error('没找到对应状态！【' + list[2] + '】')
                     status.gmtModified = new Date
+                    this.ids = [list[1]]
                     this.taskList[list[1]].history.push(status)
                     this.confirm()
                 } catch (e) {
@@ -70,6 +72,7 @@
                     return this.close()
                 }
                 this.$emit('setTaskList', this.taskList)
+                this.$emit('reFreshTaskByIds',this.ids)
                 if (this.isOpen) this.close()
             },
         },
