@@ -68,6 +68,12 @@
                 try {
                     let codeL0 = codeL[0].toUpperCase()
                     switch (codeL0) {
+                        case 'TO':
+                            let toId = this.taskList.length - 1
+                            if (!code[1]) {
+                                toId = 1
+                            }
+                            break;
                         case 'OPEN':
                             if (codeL[1]) this.buttonAction({
                                 action: codeL[1].toUpperCase()

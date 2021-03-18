@@ -4,7 +4,7 @@
             {{detail.index}}
         </el-tag>
         <span v-if="status">
-            <el-popover placement="top" trigger="manual" v-model="visible">
+            <el-popover placement="top" trigger="manual" v-model="visible" popper-class="blackBg">
                 <el-tag :type="status.type?status.type:'primary'" slot="reference" @click="changePopover(true)"
                     class="pointerMouse">
                     {{status.name}}
@@ -38,7 +38,7 @@
         data() {
             return {
                 visible: false,
-                status: this.detail.history?this.detail.history[this.detail.history.length - 1]:null
+                status: this.detail.history ? this.detail.history[this.detail.history.length - 1] : null
             }
         },
         watch: {},
@@ -76,5 +76,12 @@
 
     .pointerMouse {
         cursor: pointer;
+    }
+</style>
+<style>
+    .blackBg {
+        color:white;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.9);
     }
 </style>
