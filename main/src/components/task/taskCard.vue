@@ -1,5 +1,6 @@
 <template>
-    <div class="wordStyle" @mouseleave="changePopover(false)" @keydown="changePopover">
+    <div class="wordStyle" @mouseleave="changePopover(false)" @keydown.prevent.space="changePopover(true)" @keydown.tab="chane"
+        @keyup="changePopover(false)">
         <el-tag size="mini" style="margin-right:10px">
             {{detail.index}}
         </el-tag>
@@ -37,6 +38,7 @@
         },
         data() {
             return {
+                TRUE: true,
                 visible: false,
                 status: this.detail.history ? this.detail.history[this.detail.history.length - 1] : null
             }
@@ -46,7 +48,7 @@
         methods: {
             // 更新当前页面数据
             refresh() {
-                console.log(JSON.parse(JSON.stringify(this.detail)))    
+                console.log(JSON.parse(JSON.stringify(this.detail)))
                 if (this.detail.history) {
                     this.status = this.detail.history[this.detail.history.length - 1]
                 }
