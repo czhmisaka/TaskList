@@ -44,7 +44,7 @@
             }
         },
         created() {
-
+            // 绑定初始界面操作事件
             let that = this
             document.onkeydown = function (e) {
                 if (e.path.length > 6) return;
@@ -70,9 +70,11 @@
                     switch (codeL0) {
                         case 'TO':
                             let toId = this.taskList.length - 1
-                            if (!code[1]) {
-                                toId = 1
+                            if (codeL[1]) {
+                                toId = codeL[1]
                             }
+                            let targetTask = this.$refs['task' + toId]
+                            console.log(targetTask)
                             break;
                         case 'OPEN':
                             if (codeL[1]) this.buttonAction({
@@ -96,7 +98,7 @@
             },
 
             // 添加任务 -- ADD 组件触发
-            pushDataToTaskList(data) {
+            async pushDataToTaskList(data) {
                 this.taskList.push(JSON.parse(JSON.stringify(data)))
                 this.saveTaskListToLocalStorage()
             },
@@ -104,6 +106,7 @@
             // 刷新组件
             reFreshTaskByIds(ids) {
                 ids.forEach(x => {
+                    console.log(this.$refs['task' + x],'asd')
                     this.$refs['task' + x][0].refresh()
                 })
             },

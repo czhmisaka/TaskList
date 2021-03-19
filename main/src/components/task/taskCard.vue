@@ -46,8 +46,10 @@
         methods: {
             // 更新当前页面数据
             refresh() {
-                this.status = this.detail.history[this.detail.history.length - 1]
-                this.$forceUpdate()
+                console.log(JSON.parse(JSON.stringify(this.detail)))    
+                if (this.detail.history) {
+                    this.status = this.detail.history[this.detail.history.length - 1]
+                }
             },
 
             // 显示/关闭气泡
@@ -80,8 +82,8 @@
 </style>
 <style>
     .blackBg {
-        color:white;
+        color: white;
         background: rgba(0, 0, 0, 0.6);
-        box-shadow: 0px 0px 5px rgba(0,0,0,0.9);
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.9);
     }
 </style>

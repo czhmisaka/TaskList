@@ -23,7 +23,7 @@
         data() {
             return {
                 isOpen: false,
-                ids:[]
+                ids: []
             }
         },
         props: {
@@ -33,7 +33,7 @@
             }
         },
         mounted() {
-            console.log(taskStatusTemplateMap)
+            // console.log(taskStatusTemplateMap)
         },
         methods: {
             // 快捷调用 
@@ -66,13 +66,14 @@
             },
 
             // 行为确认
-            confirm() {
+            async confirm() {
                 if (!this.taskList.length) {
                     this.$msg('未选择任务', 'info')
                     return this.close()
                 }
                 this.$emit('setTaskList', this.taskList)
-                this.$emit('reFreshTaskByIds',this.ids)
+                await this.$nextTick()
+                this.$emit('reFreshTaskByIds', this.ids)
                 if (this.isOpen) this.close()
             },
         },

@@ -34,7 +34,6 @@ const buttonActionlist = [
 import {
     taskStatusTemplateMap
 } from '@/config/taskDetail.js'
-console.log(taskStatusTemplateMap)
 
 const commandList = {
     OPEN: {

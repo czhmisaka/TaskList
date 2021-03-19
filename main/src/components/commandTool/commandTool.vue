@@ -76,7 +76,7 @@
                 EnterNum = 0
                 let code = this.code.replace(/(^\s*)|(\s*$)/g, "").toUpperCase()
                 let codeL = code.split(' ')
-                console.log(codeL)
+                console.log(codeL.join('-'))
                 switch (codeL[0]) {
                     case 'CLS':
                     case 'CLEAR':
