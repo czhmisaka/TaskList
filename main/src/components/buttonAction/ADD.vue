@@ -16,6 +16,9 @@
     </div>
 </template>
 <script>
+    import {
+        taskStatusTemplateMap
+    } from '@/config/taskDetail.js'
     export default {
         name: 'ADD',
         components: {},
@@ -54,6 +57,9 @@
             confirm() {
                 if (!this.detail.context) return this.$msg('请输入任务内容')
                 this.detail['gmtCreate'] = new Date().getTime()
+                this.detail['history'] = [{
+                    ...taskStatusTemplateMap['init']
+                }]
                 this.$emit('addList', this.detail)
                 if (this.isOpen) this.close()
             },
