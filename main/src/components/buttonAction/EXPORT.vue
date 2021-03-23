@@ -1,10 +1,18 @@
 <template>
     <div>
-        <el-dialog title="导出列表" :visible.sync="isOpen">
-            <el-form @submit.native.prevent @keyup.native.enter.stop="confirm">
+        <el-dialog title="导出点位" :visible.sync="isOpen">
+            <el-form @submit.native.prevent @keyup.native.enter.stop="confirm" label-position="top">
+                <el-form-item :label="`相关任务${taskList.length}`" style="max-height:50vh;overflow-y:auto">
+                    <div v-for="(item,index) in taskList" :key="item.context+index" style="width:100%;text-align:left">
+                        {{`${index}. ${item.context} `}}
+                        <span v-for="(it) in item.history" :key="it">
+                            {{` --${it.name}`}}
+                        </span>
+                    </div>
+                </el-form-item>
                 <el-form-item>
-                    <el-button @click="confirm">
-
+                    <el-button @click="confirm" type="primary"> 
+                        确认
                     </el-button>
                 </el-form-item>
             </el-form>
