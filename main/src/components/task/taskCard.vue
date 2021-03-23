@@ -1,13 +1,14 @@
 <template>
-    <div class="wordStyle" @mouseleave="changePopover(false)" @keydown.prevent.space="changePopover(true)" @keydown.tab="chane"
-        @keyup="changePopover(false)">
+    <div class="wordStyle" @mouseleave="changePopover(false)" @keydown.prevent.space="changePopover(true)"
+        @keydown.tab="changePopover(false)" @keyup="changePopover(false)">
         <el-tag size="mini" style="margin-right:10px">
             {{detail.index}}
         </el-tag>
         <span v-if="status">
             <el-popover placement="top" trigger="manual" v-model="visible" popper-class="blackBg">
-                <el-tag :type="status.type?status.type:'primary'" slot="reference" @click="changePopover(true)"
-                    class="pointerMouse">
+                <el-tag ref="focusTag" :type="status.type?status.type:'primary'" slot="reference"
+                    @keydown.native.esc.prevent="changeFocus(false)" @click="changePopover(true)" class="pointerMouse"
+                    @focus="changePopover(true)" @blur="changePopover(false)">
                     {{status.name}}
                 </el-tag>
                 <span :key="item.name+index+detail.index" v-for="(item,index) in detail.history">
@@ -46,9 +47,17 @@
         watch: {},
         mounted() {},
         methods: {
+            // 控制元素焦点
+            changeFocus(e) {
+                if (e) {
+                    this.$refs['focusTag'].focus()
+                } else {
+                    this.$refs['focusTag'].blur()
+                }
+            },
+
             // 更新当前页面数据
             refresh() {
-                console.log(JSON.parse(JSON.stringify(this.detail)))
                 if (this.detail.history) {
                     this.status = this.detail.history[this.detail.history.length - 1]
                 }
