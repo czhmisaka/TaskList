@@ -58,6 +58,13 @@ let taskStatusTemplateMap = {
         code: 30,
         type: 'warning'
     },
+    "wr":{
+        name: '等待其他资源',
+        status: 'wait Resource',
+        gmtModified: 0,
+        code: 32,
+        type: 'warning'
+    },
     'wt': {
         name: '等待测试',
         status: 'wait test',
