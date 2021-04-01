@@ -99,6 +99,7 @@
 
             // 添加任务 -- ADD 组件触发
             async pushDataToTaskList(data) {
+                this.$msg('任务' + (this.taskList.length + 1) + '已创建','success')
                 this.taskList.push(JSON.parse(JSON.stringify(data)))
                 this.saveTaskListToLocalStorage()
             },
@@ -106,7 +107,7 @@
             // 刷新组件
             reFreshTaskByIds(ids) {
                 ids.forEach(x => {
-                    console.log(this.$refs['task' + x],'asd')
+                    console.log(this.$refs['task' + x], 'asd')
                     this.$refs['task' + x][0].refresh()
                 })
             },

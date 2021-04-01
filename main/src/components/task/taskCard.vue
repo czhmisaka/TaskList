@@ -13,7 +13,7 @@
                 </el-tag>
                 <span :key="item.name+index+detail.index" v-for="(item,index) in detail.history">
                     <el-tag :type="item.type" style="margin:5px 10px">
-                        {{item.name}}
+                        {{item.name}}-{{timeFormat(item.gmtModified)}}
                     </el-tag>
                     <span v-if="index!=detail.history.length-1">
                         >
@@ -47,6 +47,10 @@
         watch: {},
         mounted() {},
         methods: {
+            // 返回时间
+            timeFormat(e){
+                return new Date(e).toLocaleString()
+            },
             // 控制元素焦点
             changeFocus(e) {
                 if (e) {

@@ -79,20 +79,34 @@ let taskStatusTemplateMap = {
         code: 100,
         type: 'success'
     },
+    'fp': {
+        name: '完成【已提交】',
+        status: 'finish and push',
+        gmtModified: 0,
+        code: 101,
+        type: 'success'
+    },
     'fail':{
         name: '开发失败',
-        status: 'error',
+        status: 'cant dev',
         gmtModified: 0,
         code: 41,
         type: 'danger'
     },
     'error': {
         name: '遇到困难',
-        status: 'error',
+        status: 'fail',
         gmtModified: 0,
         code: 40,
         type: 'danger'
     },
+    'giveUp':{
+        name: '放弃开发',
+        status: 'giveUp',
+        gmtModified: 0,
+        code: 42,
+        type: 'info'
+    }
 }
 
 for (let x in taskStatusTemplateMap) {
