@@ -99,7 +99,7 @@
 
             // 添加任务 -- ADD 组件触发
             async pushDataToTaskList(data) {
-                this.$msg('任务' + (this.taskList.length + 1) + '已创建','success')
+                this.$msg('任务' + (this.taskList.length) + '已创建', 'success')
                 this.taskList.push(JSON.parse(JSON.stringify(data)))
                 this.saveTaskListToLocalStorage()
             },

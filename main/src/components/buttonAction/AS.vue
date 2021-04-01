@@ -46,6 +46,7 @@
                     status.gmtModified = new Date
                     this.ids = [list[1]]
                     this.taskList[list[1]].history.push(status)
+                    this.$msg('任务' + list[1] + ' 已修改为' + status.name,status.type)
                     this.confirm()
                 } catch (e) {
                     return this.$msg('TuTu：' + e.message)
