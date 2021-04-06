@@ -1,7 +1,7 @@
 <template>
     <div class="mainBox">
         <el-card style='margin-bottom:10px'>
-            <el-button v-for="(item) in buttonActionlist" v-bind:key="item.action" :type="item.type"
+            <el-button style="margin:5px" v-for="(item) in buttonActionlist" v-bind:key="item.action" :type="item.type"
                 @click="buttonAction(item)">
                 {{item.name}}
             </el-button>
@@ -9,7 +9,6 @@
         <el-card v-for="(item,index) in taskList" v-bind:key="item.id">
             <taskCard :ref="'task'+index" :detail='{...item,index}' />
         </el-card>
-
         <commandTool ref='commandTool' @dealCode="dealCode" />
         <ADD ref="ADD" @addList="pushDataToTaskList" />
         <RM ref="RM" :taskList="taskList" @setTaskList='setTaskList' />
@@ -57,7 +56,20 @@
                         that.$refs['commandTool'].change(true)
                         break;
                 }
+            };
+            console.log(this.$isMobile())
+            if(this.$isMobile()){
+                document.ontouchstart = function(e){
+
+                }
+                document.ontouchmove = function(e){
+
+                }
+                document.ontouchend = function(e){
+
+                }
             }
+
         },
         async mounted() {
             await this.getTaskListFromLocalStorage()
