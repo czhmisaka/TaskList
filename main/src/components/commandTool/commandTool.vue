@@ -1,9 +1,10 @@
 <template>
-    <div :style="isOpen?'':'transform:translateX(410px);opactiy:0'" class="commandTool" @click="change(true)">
+    <div :style="isOpen?'':'transform:translateX(410px);opactiy:0'" class="commandTool">
         <div class="codeHistoryBox">
             <div class="codeHistory" :style="history.length?'border: 4px rgba(0, 0, 0, 0.05) solid;':''">
-                <div v-for="(item,index) in history" v-bind:key="index+':'+item" @dblclick="code=item">
-                    {{`${index} $: ${item}`}}
+                <div v-for="(item,index) in history" v-bind:key="index+':'+item" @dblclick="setCode(item)"
+                    :class="index==key?'':''">
+                    {{`$: ${item}`}}
                 </div>
             </div>
         </div>
@@ -32,6 +33,7 @@
                 isOpen: false,
                 history: [],
                 code: '',
+                key: -1
             }
         },
         mounted() {
@@ -56,9 +58,30 @@
 
             },
 
+            // 设置指令输入
+            setCode(code) {
+                code = code.replace(/-- .*? --/g, '')
+                this.code = code
+            },
+
             // 搜索指令补全(还没做) or 其他处理 
             check(e) {
                 switch (e.code) {
+                    case 'ArrowUp':
+                        if (this.history.length != 0) {
+                            this.key = this.history.length > this.key + 1 ? this.key + 1 : this.key
+                            this.setCode(this.history[this.key])
+                        }
+                        break;
+                    case 'ArrowDown':
+                        if (this.history.length != 0) {
+                            this.key = this.key >= 0 ? this.key - 1 : this.key
+                            this.setCode(this.key === -1 ? '' : this.history[this.key])
+                        }
+                        break;
+                    case 'Space':
+
+                        break;
                     case 'Escape':
                         this.change(false)
                         break;
@@ -77,7 +100,6 @@
                 EnterNum = 0
                 let code = this.code.replace(/(^\s*)|(\s*$)/g, "").toUpperCase()
                 let codeL = code.split(' ')
-                console.log(codeL.join('-'))
                 switch (codeL[0]) {
                     case 'CLS':
                     case 'CLEAR':
@@ -86,7 +108,6 @@
                         break;
                     case 'HELP':
                         let list = commandList
-                        console.log('asd', commandList[codeL[1]], codeL)
                         if (commandList[codeL[1]]) {
                             let upCode1 = codeL[1]
                             if (commandList[upCode1]) {

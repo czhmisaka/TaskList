@@ -37,17 +37,17 @@ import {
 
 const commandList = {
     OPEN: {
-        value: [' -打开指令- '].concat(Object.keys(actionToIcon).map(x => {
+        value: [' -- 打开指令 -- '].concat(Object.keys(actionToIcon).map(x => {
             return '    ' + x
         }))
     },
     AS: {
-        value: [' -改变状态- '].concat(Object.keys(taskStatusTemplateMap).map(x => {
-            return ' number ' + x
+        value: [' -- 改变状态 -- '].concat(Object.keys(taskStatusTemplateMap).map(x => {
+            return ' [number] ' + x + ` -- ${taskStatusTemplateMap[x].name} -- `
         }))
     },
     RM: {
-        value: [' -删除任务- ', ' number ']
+        value: [' -- 删除任务 -- ', ' [number] ']
     },
 }
 

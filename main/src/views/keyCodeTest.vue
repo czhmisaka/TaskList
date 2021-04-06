@@ -1,6 +1,8 @@
 <template>
     <div class="mainBox">
-    {{code}}
+        <p v-for="(item, index) in codeList" :key="item.code+index">
+            {{item.code}}
+        </p>
     </div>
 </template>
 <script>
@@ -9,7 +11,7 @@
         components: {},
         data() {
             return {
-                code: ''
+                codeList: []
             }
         },
         created() {
@@ -17,12 +19,11 @@
             // 目前操作简介： 空格键进入/打开，esc键退出当前操作
             let that = this
             document.onkeydown = function (e) {
-                that.code = e.code
+                that.codeList.push(e)
                 console.log(e)
             }
         },
-        async mounted() {
-        },
+        async mounted() {},
         methods: {},
     }
 </script>
