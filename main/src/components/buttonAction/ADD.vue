@@ -58,7 +58,8 @@
                 if (!this.detail.context) return this.$msg('请输入任务内容')
                 this.detail['gmtCreate'] = new Date().getTime()
                 this.detail['history'] = [{
-                    ...taskStatusTemplateMap['init']
+                    ...taskStatusTemplateMap['init'],
+                    gmtModified: new Date().getTime()
                 }]
                 this.$emit('addList', this.detail)
                 if (this.isOpen) this.close()

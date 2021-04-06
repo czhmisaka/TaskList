@@ -67,8 +67,9 @@
                         if (EnterNum >= 1 && this.code) this.applyTheCode()
                         break;
                 }
-                if (e.code != 'Enter')
+                if (e.code != 'Enter') {
                     EnterNum = 0
+                }
             },
 
             // 应用指令
@@ -85,7 +86,7 @@
                         break;
                     case 'HELP':
                         let list = commandList
-                        console.log('asd',commandList[codeL[1]],codeL)
+                        console.log('asd', commandList[codeL[1]], codeL)
                         if (commandList[codeL[1]]) {
                             let upCode1 = codeL[1]
                             if (commandList[upCode1]) {

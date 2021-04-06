@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mainBox">
         <el-card style='margin-bottom:10px'>
             <el-button v-for="(item) in buttonActionlist" v-bind:key="item.action" :type="item.type"
                 @click="buttonAction(item)">
@@ -45,6 +45,7 @@
         },
         created() {
             // 绑定初始界面操作事件
+            // 目前操作简介： 空格键进入/打开，esc键退出当前操作
             let that = this
             document.onkeydown = function (e) {
                 if (e.path.length > 6) return;
@@ -147,5 +148,10 @@
     .demo {
         display: flex;
         justify-content: space-around;
+    }
+
+    .mainBox {
+        max-width: 1080px;
+        margin: 0px auto;
     }
 </style>

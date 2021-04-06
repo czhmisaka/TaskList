@@ -1,10 +1,15 @@
 import taskList from '@/views/taskList.vue'
+import test from '@/views/keyCodeTest.vue'
 
 // 组件单元库
 const cellStorage = {
     taskList: {
         component: taskList,
         name: '任务列表'
+    },
+    test:{
+        component:test,
+        name:'测试页面'
     }
 }
 
@@ -31,6 +36,7 @@ function cellMaker(name, meta = {}, path = "/", component = "") {
 let routes = [
     cellMaker('', {}, '/', 'taskList'),
     cellMaker('taskList'),
+    cellMaker('test')
 ]
 
 

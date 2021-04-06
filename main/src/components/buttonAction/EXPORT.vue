@@ -4,14 +4,15 @@
             <el-form @submit.native.prevent @keyup.native.enter.stop="confirm" label-position="top">
                 <el-form-item :label="`相关任务${taskList.length}`" style="max-height:50vh;overflow-y:auto">
                     <div v-for="(item,index) in taskList" :key="item.context+index" style="width:100%;text-align:left">
+                        {{item.context+index}}
                         {{`${index}. ${item.context} `}}
-                        <span v-for="(it) in item.history" :key="it">
+                        <span v-for="(it,ind) in item.history" :key="it.name+ind">
                             {{` --${it.name}`}}
                         </span>
                     </div>
                 </el-form-item>
                 <el-form-item>
-                    <el-button @click="confirm" type="primary"> 
+                    <el-button @click="confirm" type="primary">
                         确认
                     </el-button>
                 </el-form-item>
@@ -62,7 +63,6 @@
                 }
                 this.isOpen = true
                 await this.$nextTick()
-                this.$refs.code.focus()
             },
 
             // 关闭弹窗
