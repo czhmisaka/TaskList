@@ -8,6 +8,7 @@
         "dev": "vue-cli-service serve"
     },
     "dependencies": {
+        "axios": "^0.21.1",
         "core-js": "^3.6.5",
         "cross-env": "^7.0.3",
         "element-ui": "^2.4.5",

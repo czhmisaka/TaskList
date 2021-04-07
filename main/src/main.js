@@ -3,12 +3,11 @@ import App from './App.vue'
 import './plugins/element.js'
 import router from './router'
 import util from '@/utils/util.js'
-console.log({
-    ...util
-})
+import axios from 'axios'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$axios = axios
 Vue.prototype.$msg = function (message, type = 'error') {
     Vue.prototype.$message({
         message: 'TuTu: ' + message,
