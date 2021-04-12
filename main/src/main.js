@@ -4,6 +4,7 @@ import './plugins/element.js'
 import router from './router'
 import util from '@/utils/util.js'
 import axios from 'axios'
+const G2 = require('@antv/g2')
 
 Vue.config.productionTip = false
 
@@ -14,6 +15,8 @@ Vue.prototype.$msg = function (message, type = 'error') {
         type
     })
 }
+
+Vue.prototype.$G2 = G2
 
 // 全量引入util,避免prototye原有改写
 for (let x in util) {

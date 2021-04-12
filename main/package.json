@@ -8,6 +8,7 @@
         "dev": "vue-cli-service serve"
     },
     "dependencies": {
+        "@antv/g2": "^4.1.13",
         "axios": "^0.21.1",
         "core-js": "^3.6.5",
         "cross-env": "^7.0.3",

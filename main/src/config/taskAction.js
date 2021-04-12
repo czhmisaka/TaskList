@@ -26,8 +26,8 @@ const buttonActionlist = [
     buttonActionMaker('向下移动', 'DOWN'),
     buttonActionMaker('向上移动', 'UP'),
     buttonActionMaker('添加状态', 'AS'),
-    buttonActionMaker('完成', 'FUCK', true, 'success'),
-    buttonActionMaker('导出', 'EXPORT')
+    buttonActionMaker('导出', 'EXPORT'),
+    buttonActionMaker('分析', 'WDA', false, 'success')
 ]
 
 

@@ -16,7 +16,8 @@ public class Storage {
     };
     
     @RequestMapping("/set")
-    public String setTaskInTaskList(){
+    public String setTaskInTaskList(String list){
+        
         return "setTask";
     };
 
