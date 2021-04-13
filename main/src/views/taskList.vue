@@ -14,6 +14,7 @@
         <RM ref="RM" :taskList="taskList" @setTaskList='setTaskList' />
         <AS ref="AS" :taskList="taskList" @setTaskList='setTaskList' @reFreshTaskByIds="reFreshTaskByIds" />
         <EXPORT ref="EXPORT" :taskList="taskList" />
+        <IMPORT ref="IMPORT" :taskList="taskList" @setTaskList='setTaskList'></IMPORT>
     </div>
 </template>
 <script>
@@ -23,6 +24,7 @@
     import RM from '@/components/buttonAction/RM.vue'
     import AS from '@/components/buttonAction/AS.vue'
     import EXPORT from '@/components/buttonAction/EXPORT.vue'
+    import IMPORT from '@/components/buttonAction/IMPORT.vue';
     import {
         buttonActionlist,
     } from '@/config/taskAction.js'
@@ -34,7 +36,8 @@
             ADD,
             RM,
             AS,
-            EXPORT
+            EXPORT,
+            IMPORT
         },
         data() {
             return {
@@ -57,15 +60,14 @@
                         break;
                 }
             };
-            console.log(this.$isMobile())
-            if(this.$isMobile()){
-                document.ontouchstart = function(e){
+            if (this.$isMobile()) {
+                document.ontouchstart = function (e) {
 
                 }
-                document.ontouchmove = function(e){
+                document.ontouchmove = function (e) {
 
                 }
-                document.ontouchend = function(e){
+                document.ontouchend = function (e) {
 
                 }
             }

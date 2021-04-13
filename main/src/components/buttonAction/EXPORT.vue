@@ -2,11 +2,11 @@
     <div>
         <el-dialog title="导出点位" :visible.sync="isOpen">
             <el-form @submit.native.prevent @keyup.native.enter.stop="confirm" label-position="top">
-                <el-form-item :label="`相关任务${taskList.length}`" style="max-height:50vh;overflow-y:auto">
-                    <div v-for="(item,index) in taskList" :key="item.context+index" style="width:100%;text-align:left">
+                <el-form-item :label="`相关任务${taskLists.length}`" style="max-height:50vh;overflow-y:auto">
+                    <div v-for="(item,index) in taskLists" :key="item.context+index" style="width:100%;text-align:left">
                         {{`${index}. ${item.context} `}}
                         <span v-for="(it,ind) in item.history" :key="it.name+ind">
-                            {{` --${it.name}`}}
+                            {{` --${it.name}【${it.gmtModified_localTime}】`}}
                         </span>
                     </div>
                 </el-form-item>
@@ -37,7 +37,7 @@
         data() {
             return {
                 isOpen: false,
-                detail: {}
+                taskLists: []
             }
         },
         props: {
@@ -57,8 +57,13 @@
 
             // 打开弹窗
             async open() {
-                this.detail = {
-                    context: ''
+                if (this.taskList) {
+                    this.taskLists = this.taskList.map(x => {
+                        x.history.forEach((it) => {
+                            it['gmtModified_localTime'] = new Date(it.gmtModified).toLocaleString()
+                        })
+                        return x
+                    })
                 }
                 this.isOpen = true
                 await this.$nextTick()
