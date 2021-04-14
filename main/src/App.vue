@@ -29,9 +29,9 @@
 </script>
 
 <style>
-  *{
+  * {
     margin: 0px;
-    padding: 0px; 
+    padding: 0px;
   }
 </style>
 <style lang="scss">
@@ -63,5 +63,24 @@
         color: #42b983;
       }
     }
+  }
+
+
+  *::-webkit-scrollbar {
+
+    width: 5px;
+    height: 1px;
+    background-color: #F5F5F5;
+  }
+
+  *::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: #dbeaff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #0F4999;
+    box-shadow: 0px 0px 10px #0F4999;
   }
 </style>

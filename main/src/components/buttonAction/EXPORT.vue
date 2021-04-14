@@ -1,10 +1,11 @@
 <template>
     <div>
-        <el-dialog title="导出点位" :visible.sync="isOpen">
+        <el-dialog title="导出点位" :visible.sync="isOpen" :fullscreen="true">
             <el-form @submit.native.prevent @keyup.native.enter.stop="confirm" label-position="top">
-                <el-form-item :label="`相关任务${taskLists.length}`" style="max-height:50vh;overflow-y:auto">
+                <el-form-item :label="`相关任务${taskLists.length}`" style="overflow-y:auto">
                     <div v-for="(item,index) in taskLists" :key="item.context+index" style="width:100%;text-align:left">
                         {{`${index}. ${item.context} `}}
+                        {{"###"}}
                         <span v-for="(it,ind) in item.history" :key="it.name+ind">
                             {{` --${it.name}【${it.gmtModified_localTime}】`}}
                         </span>
@@ -76,7 +77,9 @@
 
             // 行为确认
             confirm() {
-                if (this.taskList.length < 1) return this.$msg('当前选择的任务列表为空', 'info')
+                if (this.taskLists.length < 1) return this.$msg('当前选择的任务列表为空', 'info');
+                alert('1')
+                this.close()
             },
         },
     }

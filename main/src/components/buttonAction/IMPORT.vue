@@ -1,14 +1,16 @@
 <template>
     <div>
-        <el-dialog title="导入任务列表" :visible.sync="isOpen">
-            <el-form @submit.native.prevent @keyup.native.enter.stop="confirm">
+        <el-dialog title="导入任务列表" :visible.sync="isOpen" :fullscreen="true">
+            <el-form @submit.native.prevent label-position="top">
                 <el-form-item label="任务内容">
-                    <el-input v-model="detail.context" type="textarea" placeholder="请输入任务内容" ref='code'>
+                    <el-input v-model="detail.context" @change.native="translate" type="textarea" autosize autofocus
+                        placeholder="请输入任务内容" ref='code'>
                     </el-input>
                 </el-form-item>
                 <el-form-item label="任务列表">
-                    <p v-for="item in detail.taskList" :key="item">
-                        {{item}} </p>
+                    <p v-for="item in detail.taskList" :key="item" style="text-align:left">
+                        {{item}}
+                    </p>
                 </el-form-item>
                 <el-form-item>
                     <el-button @click="confirm">
@@ -58,11 +60,13 @@
             },
 
             // 行为确认
-            confirm() {
-                if (!this.detail.context) return this.$msg('请输入任务内容')
+            confirm(e) {
+                this.close()
+            },
+
+            // 转换格式
+            translate() {
                 this.detail.taskList = this.detail.context.split('\n').filter(Boolean);
-                console.log(this.detail.context.split('\n'))
-                // if (this.isOpen) this.close()
             },
         },
     }
