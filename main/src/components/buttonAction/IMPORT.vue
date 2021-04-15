@@ -3,8 +3,8 @@
         <el-dialog title="导入任务列表" :visible.sync="isOpen" :fullscreen="true">
             <el-form @submit.native.prevent label-position="top">
                 <el-form-item label="任务内容">
-                    <el-input v-model="detail.context" @change.native="translate" type="textarea" autosize autofocus
-                        placeholder="请输入任务内容" ref='code'>
+                    <el-input v-model="detail.context" @input="translate" @change="translate" type="textarea" autosize
+                        autofocus placeholder="请输入任务内容" ref='code'>
                     </el-input>
                 </el-form-item>
                 <el-form-item label="任务列表">
@@ -25,6 +25,12 @@
     import {
         taskStatusTemplateMap
     } from '@/config/taskDetail.js'
+
+    // taskStatusTemplateMap 预处理
+    taskStatusTemplateMap.forEach(x => {
+        taskStatusTemplateMap[x.name] = x
+    })
+
     export default {
         name: 'IMPORT',
         components: {},
@@ -65,8 +71,22 @@
             },
 
             // 转换格式
-            translate() {
-                this.detail.taskList = this.detail.context.split('\n').filter(Boolean);
+            translate(e) {
+                let list = this.detail.context.split('\n').filter(Boolean);
+                let taskList = []
+                list.forEach(x => {
+                    let cell = {}
+                    cell['content'] = x.split("###")[0].split('.')[1];
+                    cell['history'] = x.split("###")[1].split('--').map(x => {
+                        let name = x.split('【').length > 1 ? x.split('【')[0] : x;
+
+                        return {
+
+                        }
+                    })
+                    taskList.push(cell)
+                })
+                this.$set(this.detail, 'taskList', taskList)
             },
         },
     }
