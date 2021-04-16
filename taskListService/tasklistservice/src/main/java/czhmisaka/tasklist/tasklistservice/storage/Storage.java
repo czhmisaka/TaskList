@@ -17,7 +17,6 @@ public class Storage {
     
     @RequestMapping("/set")
     public String setTaskInTaskList(String list){
-        
         return "setTask";
     };
 

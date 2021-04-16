@@ -8,9 +8,9 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="任务列表">
-                    <p v-for="item in detail.taskList" :key="item" style="text-align:left">
-                        {{item}}
-                    </p>
+                    <el-card v-for="(item,index) in detail.taskList" v-bind:key="item.id">
+                        <taskCard :ref="'task'+index" :detail='{...item,index}' />
+                    </el-card>
                 </el-form-item>
                 <el-form-item>
                     <el-button @click="confirm">
@@ -27,13 +27,17 @@
     } from '@/config/taskDetail.js'
 
     // taskStatusTemplateMap 预处理
-    taskStatusTemplateMap.forEach(x => {
-        taskStatusTemplateMap[x.name] = x
-    })
+    for (let x in taskStatusTemplateMap) {
+        taskStatusTemplateMap[taskStatusTemplateMap[x].name] = taskStatusTemplateMap[x]
+    }
+
+    import taskCard from '@/components/task/taskCard.vue'
 
     export default {
         name: 'IMPORT',
-        components: {},
+        components: {
+            taskCard
+        },
         data() {
             return {
                 isOpen: false,
@@ -76,13 +80,21 @@
                 let taskList = []
                 list.forEach(x => {
                     let cell = {}
-                    cell['content'] = x.split("###")[0].split('.')[1];
-                    cell['history'] = x.split("###")[1].split('--').map(x => {
+                    let conList = x.split("###");
+                    let statusList = conList.length > 1 ? conList[1] : ''
+                    cell['context'] = conList[0].split('.')[1];
+                    cell['history'] = statusList.split('--').map(x => {
                         let name = x.split('【').length > 1 ? x.split('【')[0] : x;
-
-                        return {
-
+                        if (!name) return null;
+                        let time = x.split('【').length > 1 ? x.split('【')[1].split('】')[0] : new Date()
+                            .getTime();
+                        let back = {
+                            name,
+                            ...taskStatusTemplateMap[name],
+                            gmtModified: new Date(time).getTime()
                         }
+                        console.log(back,time)
+                        return back;
                     })
                     taskList.push(cell)
                 })

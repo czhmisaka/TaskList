@@ -68,7 +68,7 @@
 
                 }
                 document.ontouchend = function (e) {
-
+                    
                 }
             }
 

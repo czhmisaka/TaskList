@@ -58,7 +58,7 @@ let taskStatusTemplateMap = {
         code: 30,
         type: 'warning'
     },
-    "wr":{
+    "wr": {
         name: '等待其他资源',
         status: 'wait Resource',
         gmtModified: 0,
@@ -86,7 +86,7 @@ let taskStatusTemplateMap = {
         code: 101,
         type: 'success'
     },
-    'fail':{
+    'fail': {
         name: '开发失败',
         status: 'cant dev',
         gmtModified: 0,
@@ -100,7 +100,7 @@ let taskStatusTemplateMap = {
         code: 40,
         type: 'danger'
     },
-    'giveUp':{
+    'giveUp': {
         name: '放弃开发',
         status: 'giveUp',
         gmtModified: 0,
@@ -110,11 +110,20 @@ let taskStatusTemplateMap = {
 }
 
 for (let x in taskStatusTemplateMap) {
-    taskStatusTemplateMap[x]['backup'] = ''
-    taskStatusTemplateMap[x]['other'] = {}
+    taskStatusTemplateMap[x]['backup'] = '';
+    taskStatusTemplateMap[x]['other'] = {};
+    taskStatusTemplateMap[x]['reason'] = {};
+}
+
+// 状态更新理由模板
+const taskStatusReasonTemplate = {
+    context: '',
+    reason: '',
+    gmtModified: 0
 }
 
 export {
     taskStatusTemplateMap,
+    taskStatusReasonTemplate,
     taskDetailKeyMapTemplate,
 }
