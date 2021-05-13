@@ -17,7 +17,7 @@ const taskDetailKeyMapTemplate = {
         temeplate: [{
             status: 'String',
             gmtModified: 'Number'
-        }]
+        }] 
     },
 }
 
