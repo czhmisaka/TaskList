@@ -16,6 +16,7 @@ Vue.prototype.$msg = function (message, type = 'error') {
     })
 }
 
+// 挂载G2
 Vue.prototype.$G2 = G2
 
 // 全量引入util,避免prototye原有改写
