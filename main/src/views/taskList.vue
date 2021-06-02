@@ -14,7 +14,7 @@
         <RM ref="RM" :taskList="taskList" @setTaskList='setTaskList' />
         <AS ref="AS" :taskList="taskList" @setTaskList='setTaskList' @reFreshTaskByIds="reFreshTaskByIds" />
         <EXPORT ref="EXPORT" :taskList="taskList" />
-        <IMPORT ref="IMPORT" :taskList="taskList" @setTaskList='setTaskList'></IMPORT>
+        <IMPORT ref="IMPORT" :taskList="taskList" @setTaskList='setTaskList' @addList='pushDataToTaskList'></IMPORT>
     </div>
 </template>
 <script>

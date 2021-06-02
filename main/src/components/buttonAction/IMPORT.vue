@@ -71,7 +71,14 @@
 
             // 行为确认
             confirm(e) {
+                this.detail.taskList.forEach(x=>{
+                    this.addList(x);
+                })
                 this.close()
+            },
+
+            addList(e){
+                this.$emit('addList', e)
             },
 
             // 转换格式
