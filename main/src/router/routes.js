@@ -1,6 +1,7 @@
 import taskList from '@/views/taskList.vue'
 import test from '@/views/keyCodeTest.vue'
 import Cainiao from '@/components/animate/Cainiao'
+import TalkBox from '@/components/other/TalkBox'
 
 // 组件单元库
 const cellStorage = {
@@ -11,6 +12,10 @@ const cellStorage = {
     Cainiao:{
         component:Cainiao,
         name:'菜鸟吉祥物动画'
+    },
+    TalkBox:{
+        component:TalkBox,
+        name:'Tutu有话说'
     },
     test:{
         component:test,
@@ -42,7 +47,8 @@ let routes = [
     cellMaker('', {}, '/', 'taskList'),
     cellMaker('taskList'),
     cellMaker('test'),
-    cellMaker('Cainiao')
+    cellMaker('Cainiao'),
+    cellMaker('TalkBox')
 ]
 
 
