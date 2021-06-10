@@ -103,7 +103,7 @@
                             break;
                     }
                 } catch (e) {
-                    return this.$msg('TuTu：' + e.message)
+                    return this.$msg(e.message)
                 }
             },
             // 设置任务列表 -- 通用化tasklist操作

@@ -1,5 +1,5 @@
 <template>
-    <div :style="isOpen?'':'transform:translateX(410px);opactiy:0'" class="commandTool">
+    <div :style="isOpen?'':'transform:translateX(410px);opactiy:0'" class="commandTool" ref='prevent'>
         <div class="codeHistoryBox">
             <div class="codeHistory" :style="history.length?'border: 4px rgba(0, 0, 0, 0.05) solid;':''">
                 <div v-for="(item,index) in history" v-bind:key="index+':'+item" @dblclick="setCode(item)"
@@ -36,9 +36,7 @@
                 key: -1
             }
         },
-        mounted() {
-
-        },
+        mounted() {},
         methods: {
             // 打开
             async change(e) {
@@ -64,9 +62,16 @@
                 this.code = code
             },
 
+            // 阻止冒泡
+            preventEvent(e) {},
+
             // 搜索指令补全(还没做) or 其他处理 
             check(e) {
+                console.log(e)
                 switch (e.code) {
+                    case 'ShiftLeft':
+                        this.setCode('talk ')
+                        break;
                     case 'ArrowUp':
                         if (this.history.length != 0) {
                             this.key = this.history.length > this.key + 1 ? this.key + 1 : this.key
@@ -80,7 +85,6 @@
                         }
                         break;
                     case 'Space':
-
                         break;
                     case 'Escape':
                         this.change(false)
@@ -96,7 +100,7 @@
             },
 
             // 应用指令
-            applyTheCode() {
+            async applyTheCode() {
                 EnterNum = 0
                 let code = this.code.replace(/(^\s*)|(\s*$)/g, "").toUpperCase()
                 let codeL = code.split(' ')
@@ -104,11 +108,16 @@
                     case 'CLS':
                     case 'CLEAR':
                         this.history = []
-                        this.code = ''
+                        this.code = '' 
+                        break;
+                    case 'TALK':
+                        let res = await this.$get('/api/bot/' + codeL[1]);
+                        this.$msg(res.data, 'info')
+                        this.history.unshift(this.code + ' -- Tutu: ' + res.data)
                         break;
                     case 'HELP':
                         let list = commandList
-                        if (commandList[codeL[1]]) {
+                        if (commandList[codeL[1]] || codeL[1]) {
                             let upCode1 = codeL[1]
                             if (commandList[upCode1]) {
                                 list[upCode1] = commandList[upCode1]

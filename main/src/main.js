@@ -9,6 +9,8 @@ const G2 = require('@antv/g2')
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios
+Vue.prototype.$get = axios.get
+
 Vue.prototype.$msg = function (message, type = 'error') {
     Vue.prototype.$message({
         message: 'TuTu: ' + message,
