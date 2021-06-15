@@ -61,15 +61,18 @@
                 if (this.taskList) {
                     this.taskLists = this.taskList.map(x => {
                         x.history.forEach((it) => {
-                            it['gmtModified_localTime'] = new Date(it.gmtModified).toLocaleString()
+                            if (it&&it.gmtModified)
+                                it['gmtModified_localTime'] = new Date(it.gmtModified)
+                                .toLocaleString()
                         })
+                        x.history = x.history.filter(Boolean);
                         return x
                     })
                 }
+                this.taskLists.filter(Boolean);
                 this.isOpen = true
                 await this.$nextTick()
             },
-
             // 关闭弹窗
             close() {
                 this.isOpen = false

@@ -36,7 +36,7 @@
             // 注册组件，渲染图表
             initAntVG2Component() {
                 const G2 = new this.$G2.Chart({
-                    
+
                 })
             }
         },
