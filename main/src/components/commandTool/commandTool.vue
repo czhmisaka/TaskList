@@ -67,9 +67,8 @@
 
             // 搜索指令补全(还没做) or 其他处理 
             check(e) {
-                console.log(e)
                 switch (e.code) {
-                    case 'ShiftLeft':
+                    case 'Backquote':
                         this.setCode('talk ')
                         break;
                     case 'ArrowUp':

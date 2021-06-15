@@ -1,5 +1,6 @@
 <template>
     <div class="blackBg">
+    
         <div class="eye">
             <div class="cycle outside borderLine"></div>
             <div class="cycle inside mainColor"></div>
