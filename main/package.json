@@ -1,52 +1,53 @@
 {
-    "name": "TaskList",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "build": "vue-cli-service build",
-        "lint": "vue-cli-service lint",
-        "dev": "vue-cli-service serve"
+  "name": "TaskList",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "dev": "vue-cli-service serve"
+  },
+  "dependencies": {
+    "@antv/g2": "^4.1.13",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "cross-env": "^7.0.3",
+    "element-ui": "^2.4.5",
+    "keras-js": "^1.0.3",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "^4.5.11",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "element-theme-chalk": "^2.15.1",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.0.3",
+    "vue-cli-plugin-element": "~1.0.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
     },
-    "dependencies": {
-        "@antv/g2": "^4.1.13",
-        "axios": "^0.21.1",
-        "core-js": "^3.6.5",
-        "cross-env": "^7.0.3",
-        "element-ui": "^2.4.5",
-        "vue": "^2.6.11",
-        "vue-router": "^3.2.0"
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
     },
-    "devDependencies": {
-        "@vue/cli-plugin-babel": "~4.5.0",
-        "@vue/cli-plugin-eslint": "~4.5.0",
-        "@vue/cli-plugin-router": "^4.5.11",
-        "@vue/cli-service": "~4.5.0",
-        "babel-eslint": "^10.1.0",
-        "element-theme-chalk": "^2.15.1",
-        "eslint": "^6.7.2",
-        "eslint-plugin-vue": "^6.2.2",
-        "node-sass": "^4.9.2",
-        "sass-loader": "^7.0.3",
-        "vue-cli-plugin-element": "~1.0.1",
-        "vue-template-compiler": "^2.6.11"
-    },
-    "eslintConfig": {
-        "root": true,
-        "env": {
-            "node": true
-        },
-        "extends": [
-            "plugin:vue/essential",
-            "eslint:recommended"
-        ],
-        "parserOptions": {
-            "parser": "babel-eslint"
-        },
-        "rules": {}
-    },
-    "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not dead"
-    ]
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

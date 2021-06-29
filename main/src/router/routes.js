@@ -1,5 +1,6 @@
 import taskList from '@/views/taskList.vue'
 import test from '@/views/keyCodeTest.vue'
+import testPage from '@/views/testPage.vue'
 import Cainiao from '@/components/animate/Cainiao'
 import TalkBox from '@/components/other/TalkBox'
 
@@ -19,6 +20,10 @@ const cellStorage = {
     },
     test:{
         component:test,
+        name:'测试页面'
+    },
+    TestPage:{
+        component:testPage,
         name:'测试页面'
     }
 }
@@ -48,7 +53,8 @@ let routes = [
     cellMaker('taskList'),
     cellMaker('test'),
     cellMaker('Cainiao'),
-    cellMaker('TalkBox')
+    cellMaker('TalkBox'),
+    cellMaker('TestPage')
 ]
 
 

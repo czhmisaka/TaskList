@@ -21,7 +21,6 @@
     </div>
 </template>
 <script>
-
     export default {
         name: 'Analysis',
         components: {},
@@ -68,9 +67,29 @@
             // 行为确认
             confirm() {
                 if (this.taskLists.length < 1) return this.$msg('当前选择的任务列表为空', 'info');
-                alert('1')
                 this.close()
             },
+
+
+            // 获取上一周的工作时常
+            // workIn 状态保持的时间
+            getWorkInTime() {
+                let timeList = []
+                /*
+                timeList cell template:
+                {
+                   timeStart:Date().getTime(),
+                   timeRange: num (s),
+
+
+                }
+                */
+               this.taskLists.forEach(x=>{
+                   x.history.forEach(item=>{
+                       
+                   })
+               })
+            }
         },
     }
 </script>
