@@ -61,14 +61,17 @@
                 }
             };
             if (this.$isMobile()) {
+                // 触控开始
                 document.ontouchstart = function (e) {
 
                 }
+                // 移动
                 document.ontouchmove = function (e) {
 
                 }
+                // 结束
                 document.ontouchend = function (e) {
-                    
+
                 }
             }
 
