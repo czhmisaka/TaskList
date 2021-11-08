@@ -100,7 +100,6 @@
                             ...taskStatusTemplateMap[name],
                             gmtModified: new Date(time).getTime()
                         }
-                        console.log(back,time)
                         return back;
                     })
                     taskList.push(cell)

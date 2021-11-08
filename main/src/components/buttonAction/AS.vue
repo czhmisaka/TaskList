@@ -1,3 +1,7 @@
+<!--
+ * @Author: czh
+ * @Date: 2021-04-22 19:20:11
+-->
 <template>
     <div>
         <el-dialog title="修改任务状态" :visible.sync="isOpen">
@@ -33,7 +37,6 @@
             }
         },
         mounted() {
-            // console.log(taskStatusTemplateMap)
         },
         methods: {
             // 快捷调用 

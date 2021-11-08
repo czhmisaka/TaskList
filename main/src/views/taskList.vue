@@ -92,7 +92,6 @@
                                 toId = codeL[1]
                             }
                             let targetTask = this.$refs['task' + toId]
-                            console.log(targetTask)
                             break;
                         case 'OPEN':
                             if (codeL[1]) this.buttonAction({
@@ -125,7 +124,6 @@
             // 刷新组件
             reFreshTaskByIds(ids) {
                 ids.forEach(x => {
-                    console.log(this.$refs['task' + x], 'asd')
                     this.$refs['task' + x][0].refresh()
                 })
             },

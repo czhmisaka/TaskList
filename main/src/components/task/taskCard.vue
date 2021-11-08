@@ -60,9 +60,11 @@
             // 控制元素焦点
             changeFocus(e) {
                 if (e) {
-                    this.$refs['focusTag'].focus()
+                    if (this.$refs['focusTag'])
+                        this.$refs['focusTag'].focus()
                 } else {
-                    this.$refs['focusTag'].blur()
+                    if (this.$refs['focusTag'])
+                        this.$refs['focusTag'].blur()
                 }
             },
 

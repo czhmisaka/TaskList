@@ -1,3 +1,7 @@
+<!--
+ * @Author: czh
+ * @Date: 2021-04-22 19:20:11
+-->
 <template>
     <div class="mainBox">
         <p v-for="(item, index) in codeList" :key="item.code+index">
@@ -20,7 +24,6 @@
             let that = this
             document.onkeydown = function (e) {
                 that.codeList.push(e)
-                console.log(e)
             }
         },
         async mounted() {},

@@ -1,3 +1,7 @@
+<!--
+ * @Author: czh
+ * @Date: 2021-04-22 19:20:11
+-->
 <template>
     <div>
         <el-dialog title="导出点位" :visible.sync="isOpen" :fullscreen="true">
@@ -52,7 +56,6 @@
         methods: {
             // 快捷调用 
             quick(list) {
-                console.log(list)
             },
 
             // 打开弹窗

@@ -1,3 +1,7 @@
+/*
+ * @Author: czh
+ * @Date: 2021-04-22 19:20:11
+ */
 import taskList from '@/views/taskList.vue'
 import test from '@/views/keyCodeTest.vue'
 import testPage from '@/views/testPage.vue'
@@ -56,11 +60,5 @@ let routes = [
     cellMaker('TalkBox'),
     cellMaker('TestPage')
 ]
-
-
-console.log(routes)
-
-
-
 
 export default routes
