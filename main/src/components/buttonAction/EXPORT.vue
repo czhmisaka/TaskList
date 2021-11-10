@@ -4,7 +4,7 @@
 -->
 <template>
     <div>
-        <el-dialog title="导出点位" :visible.sync="isOpen" :fullscreen="true">
+        <el-dialog title="导出任务" :visible.sync="isOpen" :fullscreen="true">
             <el-form @submit.native.prevent @keyup.native.enter.stop="confirm" label-position="top">
                 <el-form-item :label="`相关任务${taskLists.length}`" style="overflow-y:auto">
                     <div v-for="(item,index) in taskLists" :key="item.context+index" style="width:100%;text-align:left">

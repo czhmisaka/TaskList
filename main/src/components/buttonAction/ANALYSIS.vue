@@ -4,16 +4,10 @@
 -->
 <template>
     <div>
-        <el-dialog title="导出点位" :visible.sync="isOpen" :fullscreen="true">
+        <el-dialog title="分析" :visible.sync="isOpen" :fullscreen="true">
             <el-form @submit.native.prevent @keyup.native.enter.stop="confirm" label-position="top">
-                <el-form-item :label="`相关任务${taskLists.length}`" style="overflow-y:auto">
-                    <div v-for="(item,index) in taskLists" :key="item.context+index" style="width:100%;text-align:left">
-                        {{`${index}. ${item.context} `}}
-                        {{"###"}}
-                        <span v-for="(it,ind) in item.history" :key="it.name+ind">
-                            {{` --${it.name}【${it.gmtModified_localTime}】`}}
-                        </span>
-                    </div>
+                <el-form-item>
+                    <taskCalendar :taskList="taskList" />
                 </el-form-item>
                 <el-form-item>
                     <el-button @click="confirm" type="primary">
@@ -25,9 +19,12 @@
     </div>
 </template>
 <script>
+    import taskCalendar from '@/components/task/taskCalendar.vue'
     export default {
         name: 'Analysis',
-        components: {},
+        components: {
+            taskCalendar
+        },
         data() {
             return {
                 isOpen: false,
@@ -38,7 +35,7 @@
             taskList: {
                 type: Array,
                 default: []
-            }
+            },
         },
         mounted() {
 
@@ -52,12 +49,7 @@
             // 打开弹窗
             async open() {
                 if (this.taskList) {
-                    this.taskLists = this.taskList.map(x => {
-                        x.history.forEach((it) => {
-                            it['gmtModified_localTime'] = new Date(it.gmtModified).toLocaleString()
-                        })
-                        return x
-                    })
+
                 }
                 this.isOpen = true
                 await this.$nextTick()
@@ -77,23 +69,7 @@
 
             // 获取上一周的工作时常
             // workIn 状态保持的时间
-            getWorkInTime() {
-                let timeList = []
-                /*
-                timeList cell template:
-                {
-                   timeStart:Date().getTime(),
-                   timeRange: num (s),
-
-
-                }
-                */
-               this.taskLists.forEach(x=>{
-                   x.history.forEach(item=>{
-                       
-                   })
-               })
-            }
+            getWorkInTime() {}
         },
     }
 </script>

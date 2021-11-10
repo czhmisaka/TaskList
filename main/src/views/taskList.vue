@@ -2,7 +2,7 @@
     <div class="mainBox">
         <el-card style='margin-bottom:10px'>
             <el-button style="margin:5px" v-for="(item) in buttonActionlist" v-bind:key="item.action" :type="item.type"
-                @click="buttonAction(item)">
+                @click="buttonAction(item)" :icon="item.icon">
                 {{item.name}}
             </el-button>
         </el-card>
@@ -14,17 +14,19 @@
         <RM ref="RM" :taskList="taskList" @setTaskList='setTaskList' />
         <AS ref="AS" :taskList="taskList" @setTaskList='setTaskList' @reFreshTaskByIds="reFreshTaskByIds" />
         <EXPORT ref="EXPORT" :taskList="taskList" />
-        <IMPORT ref="IMPORT" :taskList="taskList" @setTaskList='setTaskList' @addList='pushDataToTaskList'></IMPORT>
+        <IMPORT ref="IMPORT" :taskList="taskList" @setTaskList='setTaskList' @addList='pushDataToTaskList' />
+        <ANALYSIS ref="ANALYSIS" :taskList="taskList" @setTaskList='setTaskList' />
     </div>
 </template>
 <script>
-    import taskCard from '@/components/task/taskCard.vue'
-    import commandTool from '@/components/commandTool/commandTool.vue'
-    import ADD from '@/components/buttonAction/ADD.vue'
-    import RM from '@/components/buttonAction/RM.vue'
-    import AS from '@/components/buttonAction/AS.vue'
-    import EXPORT from '@/components/buttonAction/EXPORT.vue'
+    import taskCard from '@/components/task/taskCard.vue';
+    import commandTool from '@/components/commandTool/commandTool.vue';
+    import ADD from '@/components/buttonAction/ADD.vue';
+    import RM from '@/components/buttonAction/RM.vue';
+    import AS from '@/components/buttonAction/AS.vue';
+    import EXPORT from '@/components/buttonAction/EXPORT.vue';
     import IMPORT from '@/components/buttonAction/IMPORT.vue';
+    import ANALYSIS from '@/components/buttonAction/ANALYSIS.vue';
     import {
         buttonActionlist,
     } from '@/config/taskAction.js'
@@ -37,7 +39,8 @@
             RM,
             AS,
             EXPORT,
-            IMPORT
+            IMPORT,
+            ANALYSIS
         },
         data() {
             return {

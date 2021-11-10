@@ -1,3 +1,7 @@
+/*
+ * @Author: czh
+ * @Date: 2021-06-10 10:07:04
+ */
 import Vue from 'vue'
 import App from './App.vue'
 import './plugins/element.js'
@@ -23,7 +27,7 @@ Vue.prototype.$G2 = G2
 
 // 全量引入util,避免prototye原有改写
 for (let x in util) {
-    Vue.prototype[x] = util[x]
+    Vue.prototype['$'+x] = util[x]
 }
 
 new Vue({

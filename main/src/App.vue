@@ -1,9 +1,13 @@
+<!--
+ * @Author: czh
+ * @Date: 2021-04-22 19:20:11
+-->
 <template>
   <div id="app">
     <el-container class="wholeScreen">
-      <!-- <el-aside>
-        <Menu type='left'/>
-      </el-aside> -->
+      <el-aside style="height:100vh;">
+        <Menu type='left' style="height:100vh;" />
+      </el-aside>
       <el-container>
         <el-main>
           <router-view></router-view>
@@ -21,7 +25,7 @@
     },
     data() {
       return {
-
+        leftMenu_isOpen: false,
       }
     },
     mounted() {},

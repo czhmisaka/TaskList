@@ -1,3 +1,7 @@
+/*
+ * @Author: czh
+ * @Date: 2021-04-22 19:20:11
+ */
 const actionToIcon = {
     ADD: 'el-icon-plus',
     RM: 'el-icon-delete',
@@ -28,6 +32,7 @@ const buttonActionlist = [
     buttonActionMaker('添加状态', 'AS'),
     buttonActionMaker('导出', 'EXPORT'),
     buttonActionMaker('分析', 'WDA', false, 'success'),
+    buttonActionMaker('分析', 'ANALYSIS', false, 'success'),
     buttonActionMaker('导入', "IMPORT", false, 'info')
 ]
 
