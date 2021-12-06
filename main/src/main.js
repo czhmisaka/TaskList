@@ -22,6 +22,7 @@ Vue.prototype.$msg = function (message, type = 'error') {
     })
 }
 
+
 // 挂载G2
 Vue.prototype.$G2 = G2
 

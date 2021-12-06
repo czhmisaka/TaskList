@@ -9,7 +9,7 @@
         <el-card v-for="(item,index) in taskList" v-bind:key="item.id">
             <taskCard :ref="'task'+index" :detail='{...item,index}' />
         </el-card>
-        <commandTool ref='commandTool' @dealCode="dealCode" />
+        <commandTool ref='commandTool' @dealCode="dealCode" v-show="!$isMobile()" />
         <ADD ref="ADD" @addList="pushDataToTaskList" />
         <RM ref="RM" :taskList="taskList" @setTaskList='setTaskList' />
         <AS ref="AS" :taskList="taskList" @setTaskList='setTaskList' @reFreshTaskByIds="reFreshTaskByIds" />
@@ -111,6 +111,7 @@
                     return this.$msg(e.message)
                 }
             },
+            
             // 设置任务列表 -- 通用化tasklist操作
             setTaskList(taskList) {
                 this.taskList = JSON.parse(JSON.stringify(taskList))

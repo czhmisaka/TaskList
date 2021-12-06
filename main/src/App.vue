@@ -5,7 +5,7 @@
 <template>
   <div id="app">
     <el-container class="wholeScreen">
-      <el-aside style="height:100vh;">
+      <el-aside style="height:100vh;" v-if="!$isMobile()">
         <Menu type='left' style="height:100vh;" />
       </el-aside>
       <el-container>
