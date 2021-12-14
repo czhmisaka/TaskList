@@ -7,7 +7,7 @@ const devServer = {
     host: '127.0.0.1',
     port: 8050,
     https: false,
-    hotOnly: false
+    hotOnly: false,
 }
 
 module.exports = {

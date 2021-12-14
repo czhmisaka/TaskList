@@ -1,7 +1,7 @@
 <template>
     <div class="mainBox">
-        <el-card style='margin-bottom:10px'>
-            <el-button style="margin:5px" v-for="(item) in buttonActionlist" v-bind:key="item.action" :type="item.type"
+        <el-card style='margin-bottom:10px;'>
+            <el-button :style="'margin:5px;'+($isMobile()?'float:left':'')" v-for="(item) in buttonActionlist" v-bind:key="item.action" :type="item.type"
                 @click="buttonAction(item)" :icon="item.icon">
                 {{item.name}}
             </el-button>

@@ -44,6 +44,7 @@ import {
     taskStatusTemplateMap
 } from '@/config/taskDetail.js'
 
+
 const commandList = {
     OPEN: {
         value: [' -- 打开指令 -- '].concat(Object.keys(actionToIcon).map(x => {
