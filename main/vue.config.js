@@ -10,6 +10,10 @@ const devServer = {
     hotOnly: false,
 }
 
+// 全局路径 
+const publicPath = process.env.NODE_ENV === 'production' ? '/taskList' : '';
+
 module.exports = {
     devServer,
+    publicPath,
 }

@@ -7,7 +7,7 @@
             </el-button>
         </el-card>
         <el-card v-for="(item,index) in taskList" v-bind:key="item.id">
-            <taskCard :ref="'task'+index" :detail='{...item,index}' />
+            <taskCard :href="'task-'+index" :ref="'task'+index" :detail='{...item,index}' />
         </el-card>
         <commandTool ref='commandTool' @dealCode="dealCode" v-show="!$isMobile()" />
         <ADD ref="ADD" @addList="pushDataToTaskList" />
