@@ -4,7 +4,8 @@
  */
 import Vue from 'vue'
 import App from './App.vue'
-import './plugins/element.js'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import router from './router'
 import util from '@/utils/util.js'
 import axios from 'axios'
@@ -28,9 +29,10 @@ Vue.prototype.$G2 = G2
 
 // 全量引入util,避免prototye原有改写
 for (let x in util) {
-    Vue.prototype['$'+x] = util[x]
+    Vue.prototype['$' + x] = util[x]
 }
 
+Vue.use(ElementUI)
 new Vue({
     router,
     render: h => h(App)
