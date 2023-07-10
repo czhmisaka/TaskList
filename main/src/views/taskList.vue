@@ -71,7 +71,8 @@ export default {
     // 目前操作简介： 空格键进入/打开，esc键退出当前操作
     let that = this;
     document.onkeydown = function (e) {
-      //   if (e.path.length > 6) return;
+      console.log(e);
+      if (e.target.localName != "body") return;
       switch (e.code) {
         case "Escape":
           that.$refs["commandTool"].change(false);
